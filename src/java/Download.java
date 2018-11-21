@@ -19,23 +19,32 @@ import javax.ws.rs.core.Response.ResponseBuilder;
  */
 @Path("/descarga")
 public class Download {
-    
+
     @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN })
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})
     @Path("/json")
     public Response downloadJson() {
-        File file = new File("C:\\Parqueaderos\\1.json");
+        File file = new File("C:\\Servidor\\1.json");
         ResponseBuilder response = Response.ok((Object) file);
         response.header("Content-Disposition", "attachment;filename=Json.json");
         return response.build();
     }
-    
-        
+
+    @GET
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})
+    @Path("/parkings")
+    public Response downloadparkings() {
+        File file = new File("C:\\Servidor\\data.json");
+        ResponseBuilder response = Response.ok((Object) file);
+        response.header("Content-Disposition", "attachment;filename=Json.json");
+        return response.build();
+    }
+
     @GET
     @Produces("image/jpg")
     @Path("/image")
     public Response downloadImage() {
-        File file = new File("C:\\Parqueaderos\\1.jpg");
+        File file = new File("C:\\Servidor\\1.jpg");
         ResponseBuilder response = Response.ok((Object) file);
         response.header("Content-Disposition", "attachment;filename=Image.jpg");
         return response.build();
