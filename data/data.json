@@ -1,0 +1,33 @@
+[{
+    "id": "3",
+    "estado": "ocupado"
+  },
+  {
+    "id": "6",
+    "estado": "ocupado"
+  },
+  {
+    "id": "7",
+    "estado": "ocupado"
+  },
+  {
+    "id": "2",
+    "estado": "libre"
+  },
+  {
+    "id": "4",
+    "estado": "ocupado"
+  },
+  {
+    "id": "1",
+    "estado": "libre"
+  },
+  {
+    "id": "5",
+    "estado": "ocupado"
+  },
+  {
+    "id": "8",
+    "estado": "ocupado"
+  }
+]
