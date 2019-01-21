@@ -31,9 +31,9 @@ public class Conexion {
 
             while (rs.next()) {
                 for (int i = 1; i <= n; i++) {
-                    result += rs.getString(i) + ",";
+                    result += rs.getString(i) + " columns ";
                 }
-                result += ";";
+                result += " rows ";
             }
             rs.close();
             statement.close();
@@ -42,7 +42,7 @@ public class Conexion {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        String[] select = result.split(";");
+        String[] select = result.split(" rows ");
         return select;
     }
 
