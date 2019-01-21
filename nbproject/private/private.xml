@@ -2,11 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/jessi/Documents/Tesis/Roman/Servidor/src/java/com/ute/models/coordenates/Conexion.java</file>
             <file>file:/C:/Users/jessi/Documents/Tesis/Roman/Servidor/src/java/com/ute/models/coordenates/ClassMain.java</file>
             <file>file:/C:/Users/jessi/Documents/Tesis/Roman/Servidor/src/java/com/ute/models/coordenates/CreateJson.java</file>
             <file>file:/C:/Users/jessi/Documents/Tesis/Roman/Servidor/src/java/com/ute/models/coordenates/FiltersResource.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 4a462c2e053c822f57d8d9e04cc05cab648b04ca
     </open-files>
 </project-private>
