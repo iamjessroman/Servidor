@@ -1,0 +1,1 @@
+Remote,127.0.0.1,3306,parkingdb,root,NONE,Local,166.62.78.1,3306,server-administrator,jessicaroman,12345
