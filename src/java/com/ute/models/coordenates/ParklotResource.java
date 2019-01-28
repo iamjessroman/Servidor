@@ -14,49 +14,54 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import org.json.JSONException;
 
 /**
  * REST Web Service
  *
- * @author jessi
+ * @author Jessica Roman
  */
-@Path("filters")
-public class FiltersResource {
-    Conexion cx = new Conexion ();
+@Path("parklot")
+public class ParklotResource {
+
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of FiltersResource
+     * Creates a new instance of ParklotResource
      */
-    public FiltersResource() {
+    Main m = new Main();
+    CreateJson cj = new CreateJson();
+
+    public ParklotResource() {
     }
-    
-//    @GET
-//    @Path("/getFilters")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getFilters() throws SQLException, IOException, JSONException {
-//        String sql = "SELECT * FROM `config`";
-//        return cx.select(sql);
-//    }
-    
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getParklot(@PathParam("id") int id) throws SQLException, IOException, JSONException {
+        
+        return cj.create(m.getDir(id));
+    }
+
     /**
-     * Retrieves representation of an instance of com.ute.models.coordenates.FiltersResource
+     * Retrieves representation of an instance of
+     * com.ute.models.coordenates.ParklotResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
-       
         //TODO return proper representation object
         throw new UnsupportedOperationException();
     }
 
     /**
-     * PUT method for updating or creating an instance of FiltersResource
+     * PUT method for updating or creating an instance of ParklotResource
+     *
      * @param content representation for the resource
      */
     @PUT

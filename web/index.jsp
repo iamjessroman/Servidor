@@ -23,7 +23,7 @@
                         <%
                             String sql = "SELECT name FROM `filters`";
                             int n = 1;
-                            String text[] = cx.select(sql, n);
+                            String text[] = cx.select(sql, n, 2);
 
                             for (int i = 0; i < text.length; i++) {
                                 String temp[] = text[i].split(" columns ");
@@ -130,7 +130,7 @@
             <%
                 sql = "SELECT * FROM `filters`";
                 n = 7;
-                text = cx.select(sql, n);
+                text = cx.select(sql, n, 2);
                 for (int i = 0; i < text.length; i++) {
                     String temp[] = text[i].split(" columns ");
 
@@ -140,7 +140,7 @@
                     init: <%= temp[3]%>,
                     gui: <%= temp[4]%>,
                     apply: <%= temp[5]%>
-            } <%=i!= text.length-1 ? ",": " "%>
+            } <%=i != text.length - 1 ? "," : " "%>
             <% }%>
             }
 
@@ -418,14 +418,14 @@
             };
 // TODO
             <%
-                  sql = "SELECT `imagefilters_function` FROM `filters`";
-                  n = 1;
-                  text = cx.select(sql, n);
-                  for (int i = 0; i < text.length; i++) {
-                      String temp[] = text[i].split(" columns ");
+                sql = "SELECT `imagefilters_function` FROM `filters`";
+                n = 1;
+                text = cx.select(sql, n, 2);
+                for (int i = 0; i < text.length; i++) {
+                    String temp[] = text[i].split(" columns ");
 
             %>
-            <%= temp[0]%> 
+            <%= temp[0]%>
             <% }%>
             ImageFilters.Translate = function (srcImageData, x, y, interpolation) {
 
@@ -782,7 +782,6 @@
 
             return dstImageData;
             };
-
             ImageFilters.OpacityFilter = function (srcImageData, opacity) {
             var srcPixels = srcImageData.data,
                     srcWidth = srcImageData.width,
@@ -798,7 +797,7 @@
             }
 
             return dstImageData;
-            };        
+            };
 
         </script>
         <div id="guidat">
