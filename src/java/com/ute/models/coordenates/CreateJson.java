@@ -20,7 +20,7 @@ import sun.misc.BASE64Encoder;
  */
 public class CreateJson {
 
-    public JSONObject typeImage(String data) throws JSONException {
+    public JSONObject typeImage(String data, String path, String name) throws JSONException {
 
         JSONObject objectImage = new JSONObject();
 
@@ -50,6 +50,8 @@ public class CreateJson {
         objectImage.put("cropX", 0);
         objectImage.put("cropY", 0);
         objectImage.put("src", data);
+        objectImage.put("path", path.substring(path.length() - 19));
+        objectImage.put("name", name);
 
         return objectImage;
     }
@@ -158,15 +160,15 @@ public class CreateJson {
     }
 
     public JSONObject typeText(
-            Double top, 
-            Double left, 
-            Double width, 
-            Double height, 
-            Double scaleX, 
-            Double scaleY, 
+            Double top,
+            Double left,
+            Double width,
+            Double height,
+            Double scaleX,
+            Double scaleY,
             Double angle,
             String id
-           ) throws JSONException {
+    ) throws JSONException {
 
         JSONObject objectText = new JSONObject();
 
@@ -199,9 +201,9 @@ public class CreateJson {
         return objectText;
     }
 
-    public String create(String path) throws IOException, JSONException {
+    public String create(String path, String name) throws IOException, JSONException {
         BufferedImage image = ImageIO.read(new File(path + ".jpg"));
-        JSONObject objectImage = typeImage(encodeToString(image, "jpeg"));
+        JSONObject objectImage = typeImage(encodeToString(image, "jpeg"), path, name);
         JSONObject objectGroup = new JSONObject();
         JSONObject json = new JSONObject();
         JSONArray objects = new JSONArray();

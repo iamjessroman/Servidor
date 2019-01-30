@@ -42,8 +42,9 @@ public class ParklotResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getParklot(@PathParam("id") int id) throws SQLException, IOException, JSONException {
-        
-        return cj.create(m.getDir(id));
+        String dir = m.getDir(id);
+        String name = m.getName(id);
+        return cj.create(dir, name);
     }
 
     /**

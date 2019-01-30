@@ -28,7 +28,14 @@ public class Main {
         String dir = sub[0].substring(0, sub[0].length() - 19);
         String parklot = getParklot(dir);
         return parklot;
-
+    }
+    
+       public String getName(int id) throws IOException, SQLException, JSONException {
+        String sql = "SELECT name_Parklot FROM `parklot` WHERE id_Parklot ='" + id + "'";
+        String[] temp = cx.select(sql, 1, 1);
+        String[] sub = temp[0].split(" columns ");
+        String name = sub[0];
+        return name;
     }
 
     public String getParklot(String ruta) throws IOException {
