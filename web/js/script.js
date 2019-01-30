@@ -17,7 +17,16 @@ function upload(url) {
 
     $.getJSON(url, function (data) {
         parking.loadFromJSON(data, parking.renderAll.bind(parking), function (o, object) {
-            console.log(o);
+            if (o.type == 'image') {
+                fabric.util.loadImage(o.src, function (img) {
+                    image = new fabric.Image(img);
+                    image.selectable = true;
+                    parking.setWidth(image.width);
+                    parking.setHeight(image.height);
+                    parking.centerObject(image);
+                    parking.renderAll();
+                });
+            }
         });
     });
 }

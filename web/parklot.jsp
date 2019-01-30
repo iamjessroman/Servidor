@@ -15,5 +15,6 @@
     <script src="./js/fabric.min.js"></script>
     <script language="JavaScript" type="text/javascript" src="./js/script.js"></script>
     <script language="JavaScript" type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
-    <canvas id="parking" width="800" height="600"></canvas>
+    <!-- <button onclick="upload('http://localhost:8080/Servidor/app/parklot/37');">Cargar</button> -->
+    <canvas id="parking" width="2048" height="1536"></canvas>
 </html>
