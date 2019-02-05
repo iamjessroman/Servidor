@@ -66,7 +66,6 @@ DAT.GUI = function(parameters) {
   this.domElement = document.createElement('div');
   this.domElement.setAttribute('class', 'guidat');
   this.domElement.style.width = width + 'px';
-  this.domElement.style.display ='none';
 
   var curControllerContainerHeight = parameters.height;
   var controllerContainer = document.createElement('div');

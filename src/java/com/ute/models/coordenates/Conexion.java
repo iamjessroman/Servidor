@@ -1,9 +1,11 @@
 package com.ute.models.coordenates;
 
+import java.awt.HeadlessException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +14,7 @@ import org.json.JSONException;
 
 public class Conexion {
 
-    String[] con = {"Remote", "127.0.0.1", "3306", "parkingdb", "root", "NONE", "Local", "166.62.78.1", "3306", "server-administrator", "jessicaroman", "12345"};
+    String[] con = {"Remote", "127.0.0.1", "3306", "parkingdb", "root", "NONE", "Local", "127.0.0.1", "3306", "server-administrator", "root", "NONE"};
     String[] conexion = {"1", "2", "3", "4", "5"};
 
     public void getCrediantials(int n) {
@@ -64,6 +66,32 @@ public class Conexion {
         }
         String[] select = result.split(" rows ");
         return select;
+    }
+    
+        public void insert(String sql, String[] columns, String msg, int n) {
+        testMySQLDriver();
+        getCrediantials(n);
+        String passLocal = (conexion[4].equals("NONE")) ? "" : conexion[4];
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://"
+                    + conexion[0] + ":"
+                    + conexion[1] + "/"
+                    + conexion[2],
+                    conexion[3],
+                    passLocal);
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            for (int i = 1; i <= columns.length; i++) {
+                ps.setString(i, columns[i - 1]);
+            }
+            ps.executeUpdate();
+            if (!" ".equals(msg)) {
+               
+            }
+
+        } catch (HeadlessException | SQLException e) {
+            
+        }
     }
 
     private static void testMySQLDriver() {

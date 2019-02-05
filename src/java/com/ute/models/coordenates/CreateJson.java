@@ -180,7 +180,6 @@ public class CreateJson {
         objectText.put("width", width);
         objectText.put("height", height);
         objectText.put("fill", "yellow");
-        objectText.put("strokeWidth", 1);
         objectText.put("strokeLineCap", "butt");
         objectText.put("strokeLineJoin", "miter");
         objectText.put("strokeMiterLimit", 10);
