@@ -47,10 +47,8 @@
                                 String sql = "SELECT name FROM `filters`";
                                 int n = 1;
                                 String text[] = cx.select(sql, n, 2);
-
                                 for (int i = 0; i < text.length; i++) {
                                     String temp[] = text[i].split(" columns ");
-
                             %> 
                             <option value = "<%= temp[0]%>"><%= temp[0]%></option>
                             <% }%>
@@ -89,14 +87,12 @@
                             }
                             }
                             }
-
                             function loadImage(src, callback) {
                             $('<img />').attr('src', src).load(function () {
                             TestCanvas.init(this);
                             callback && callback();
                             });
                             }
-
                             function initFilter(filter_name) {
                             //TestCanvas.reset();
                             gui.clear();
@@ -115,7 +111,6 @@
                             }, 'reset');
                             }
                             }
-
                             // Globals
                             var gui;
                             var TestCanvas = {
@@ -132,7 +127,6 @@
                                     if (!this.context) {
                                     return;
                                     }
-
                                     args.unshift(this.defaultImage);
                                     var start_time = new Date().getTime();
                                     var result = ImageFilters[filter_name].apply(ImageFilters, args);
@@ -150,19 +144,16 @@
                                     if (!this.context) {
                                     return;
                                     }
-
                                     this.context.putImageData(this.defaultImage, 0, 0);
                                     }
                             };
                             var filters = {
-
                 <%
                     sql = "SELECT * FROM `filters`";
                     n = 7;
                     text = cx.select(sql, n, 2);
                     for (int i = 0; i < text.length; i++) {
                         String temp[] = text[i].split(" columns ");
-
                 %>
                 <%= temp[1]%> :{
                             use_gui: <%= temp[2]%>,
@@ -172,7 +163,6 @@
                             } <%=i != text.length - 1 ? "," : " "%>
                 <% }%>
                             }
-
                             $(function () {
                             // init gui library
                             gui = new DAT.GUI();
@@ -195,7 +185,6 @@
                             $('#filter_list option:eq(0)').attr('selected', 'selected');
                             current_filter = $("#filter_list").val();
                             }
-
                             setInterval(function () {
                             var selected_filter = $("#filter_list").val();
                             if (selected_filter && selected_filter !== current_filter) {
@@ -287,7 +276,6 @@
                                             return 0;
                                     }
                                     }
-
                                     var i = (y * width + x) << 2;
                                     // ARGB
                                     return src[i + 3] << 24 | src[i] << 16 | src[i + 1] << 8 | src[i + 2];
@@ -346,7 +334,6 @@
                                     return;
                                     }
                                     }
-
                                     cx = 1 - wx;
                                     cy = 1 - wy;
                                     r = ((nw >> 16 & 0xFF) * cx + (ne >> 16 & 0xFF) * wx) * cy + ((sw >> 16 & 0xFF) * cx + (se >> 16 & 0xFF) * wx) * wy;
@@ -390,7 +377,6 @@
                                     // Saturation
                                     s = (l > 0.5) ? chroma / (2 - max - min) : chroma / (max + min);
                                     }
-
                                     return [h, s, l];
                                     },
                                     /**
@@ -412,7 +398,6 @@
                                     } else {
                                     m2 = l + s - l * s;
                                     }
-
                                     m1 = l * 2 - m2;
                                     hue = h + 1 / 3;
                                     var tmp;
@@ -422,7 +407,6 @@
                                     } else if (hue > 1) {
                                     hue -= 1;
                                     }
-
                                     if (6 * hue < 1) {
                                     tmp = m1 + (m2 - m1) * hue * 6;
                                     } else if (2 * hue < 1) {
@@ -432,12 +416,10 @@
                                     } else {
                                     tmp = m1;
                                     }
-
                                     rgb[i] = tmp * 255 + 0.5 | 0;
                                     hue -= 1 / 3;
                                     }
                                     }
-
                                     return rgb;
                                     }
                             };
@@ -448,24 +430,18 @@
                     text = cx.select(sql, n, 2);
                     for (int i = 0; i < text.length; i++) {
                         String temp[] = text[i].split(" columns ");
-
                 %>
                 <%= temp[0]%>
                 <% }%>
                             ImageFilters.Translate = function (srcImageData, x, y, interpolation) {
-
                             };
                             ImageFilters.Scale = function (srcImageData, scaleX, scaleY, interpolation) {
-
                             };
                             ImageFilters.Rotate = function (srcImageData, originX, originY, angle, resize, interpolation) {
-
                             };
                             ImageFilters.Affine = function (srcImageData, matrix, resize, interpolation) {
-
                             };
                             ImageFilters.UnsharpMask = function (srcImageData, level) {
-
                             };
                             ImageFilters.ConvolutionFilter = function (srcImageData, matrixX, matrixY, matrix, divisor, bias, preserveAlpha, clamp, color, alpha) {
                             var srcPixels = srcImageData.data,
@@ -507,7 +483,6 @@
                             } else {
                             replace = true;
                             }
-
                             for (var col = - cols; col <= cols; col += 1) {
                             var m = matrix[mIndex++];
                             if (m !== 0) {
@@ -519,7 +494,6 @@
                             replace = true;
                             }
                             }
-
                             if (replace) {
                             r += m * clampR;
                             g += m * clampG;
@@ -535,14 +509,12 @@
                             }
                             }
                             }
-
                             dstPixels[index] = (v = r / divisor + bias) > 255 ? 255 : v < 0 ? 0 : v | 0;
                             dstPixels[index + 1] = (v = g / divisor + bias) > 255 ? 255 : v < 0 ? 0 : v | 0;
                             dstPixels[index + 2] = (v = b / divisor + bias) > 255 ? 255 : v < 0 ? 0 : v | 0;
                             dstPixels[index + 3] = preserveAlpha ? srcPixels[index + 3] : (v = a / divisor + bias) > 255 ? 255 : v < 0 ? 0 : v | 0;
                             }
                             }
-
                             return dstImageData;
                             };
                             ImageFilters.BlendAdd = function (srcImageData, blendImageData, dx, dy) {
@@ -560,7 +532,6 @@
                             dstPixels[i + 2] = ((v = srcPixels[i + 2] + blendPixels[i + 2]) > 255) ? 255 : v;
                             dstPixels[i + 3] = 255;
                             }
-
                             return dstImageData;
                             };
                             ImageFilters.BlendSubtract = function (srcImageData, blendImageData, dx, dy) {
@@ -578,7 +549,6 @@
                             dstPixels[i + 2] = ((v = srcPixels[i + 2] - blendPixels[i + 2]) < 0) ? 0 : v;
                             dstPixels[i + 3] = 255;
                             }
-
                             return dstImageData;
                             };
                             /**
@@ -630,7 +600,6 @@
                              * @param brightness -100 <= n <= 100
                              * @param contrast -100 <= n <= 100
                              */
-
                             /**
                              * more like the new photoshop algorithm
                              * @param brightness -100 <= n <= 100
@@ -691,7 +660,6 @@
                             dstPixels[i + 2] = (value = r * m10 + g * m11 + b * m12 + a * m13 + m14) > 255 ? 255 : value < 0 ? 0 : value | 0;
                             dstPixels[i + 3] = (value = r * m15 + g * m16 + b * m17 + a * m18 + m19) > 255 ? 255 : value < 0 ? 0 : value | 0;
                             }
-
                             return dstImageData;
                             };
                             ImageFilters.Copy = function (srcImageData, dstImageData) {
@@ -701,7 +669,6 @@
                             while (srcLength--) {
                             dstPixels[srcLength] = srcPixels[srcLength];
                             }
-
                             return dstImageData;
                             };
                             ImageFilters.Crop = function (srcImageData, x, y, width, height) {
@@ -728,7 +695,6 @@
                             dstPixels[dstIndex + 3] = srcPixels[srcIndex + 3];
                             }
                             }
-
                             return dstImageData;
                             };
                             ImageFilters.CropBuiltin = function (srcImageData, x, y, width, height) {
@@ -765,7 +731,6 @@
                             scaleX || (scaleX = 0);
                             scaleY || (scaleY = 0);
                             mode || (mode = 2); // wrap
-
                             var mapWidth = mapImageData.width,
                                     mapHeight = mapImageData.height,
                                     mapPixels = mapImageData.data,
@@ -775,7 +740,6 @@
                                     cx, cy, tx, ty, x, y;
                             for (x = 0; x < srcWidth; x += 1) {
                             for (y = 0; y < srcHeight; y += 1) {
-
                             dstIndex = (y * srcWidth + x) << 2;
                             if (x < mapX || y < mapY || x >= mapRight || y >= mapBottom) {
                             // out of the map bounds
@@ -797,14 +761,12 @@
                             srcIndex = dstIndex;
                             }
                             }
-
                             dstPixels[dstIndex] = srcPixels[srcIndex];
                             dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
                             dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
                             dstPixels[dstIndex + 3] = srcPixels[srcIndex + 3];
                             }
                             }
-
                             return dstImageData;
                             };
                             ImageFilters.OpacityFilter = function (srcImageData, opacity) {
@@ -820,7 +782,6 @@
                             dstPixels[i + 2] = srcPixels[i + 2];
                             dstPixels[i + 3] = opacity;
                             }
-
                             return dstImageData;
                             };
             </script>
@@ -831,7 +792,7 @@
             </div>
         </div>
     </body>
-                <button onclick="upload('http://localhost:8080/Servidor/app/parklot/37');">Cargar</button>
+                <button onclick="upload('http://localhost:8080/Servidor/app/parklot/36');">Cargar</button>
             <button onclick="next()">Cortar</button>
             <button onclick="refresh()">Reiniciar</button>
     <div id="screen" style="
