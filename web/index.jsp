@@ -30,6 +30,11 @@
             <font color="Black" face="Arial">
             </font>
             <div id="Layer" align="center" style="border:3px solid #4aad52; text-align: center; width: 400px; height: 400px; overflow: scroll;"></div>
+            <form method="post" action="process.jsp">
+                <textarea name="code" id="code" ></textarea>
+                <input type="submit" value="Guardar Parqueos">
+            </form
+
             <div id="container">
                 <div id="wrapper">
                     <div id="side">
@@ -66,7 +71,7 @@
                             </div>
 
                         </div>
-                        <button id="canvasImageSave" class="btn btn-primary" onclick="savecanvas()">Guardar</button>
+                        <button id="canvasImageSave" onclick="savecanvas()">Guardar</button>
                         <!--/result-->
                     </div>
                     <!--/main-->
@@ -785,16 +790,11 @@
                             return dstImageData;
                             };
             </script>
-            <div id="guidat" >
-                <div class="guidat" style="width: 280px;">
-                    <div class="guidat-controllers" style="height: 300px; overflow-y: auto;"></div><a class="guidat-toggle" href="http://www.arahaya.com/imagefilters/#">Close Controls</a>
-                </div>
-            </div>
         </div>
     </body>
-                <button onclick="upload('http://localhost:8080/Servidor/app/parklot/36');">Cargar</button>
-            <button onclick="next()">Cortar</button>
-            <button onclick="refresh()">Reiniciar</button>
+    <button onclick="upload('http://localhost:8080/Servidor/app/parklot/36');">Cargar</button>
+    <button onclick="next()">Cortar</button>
+    <button onclick="refresh()">Reiniciar</button>
     <div id="screen" style="
          display:none;">
         <canvas id="parking" style="

@@ -7,6 +7,21 @@ var w = "";
 var h = "";
 var api = "";
 
+function save() {
+
+    jsonObj =[];
+    for (var i = 0; i < num; i++) {
+        var h = document.getElementById(i);
+        item = {}
+        item ["id"] = i;
+        item ["src"] = h.toDataURL('image/jpeg', 1.0);
+        jsonObj.push(item);
+    }
+
+    document.getElementById("code").innerHTML = JSON.stringify(jsonObj);
+}
+
+
 function refresh() {
     for (var i = 0; i < num; i++) {
         
@@ -217,4 +232,5 @@ function savecanvas() {
     var ctx2 = c2.getContext("2d");
     ctx1.clearRect(0, 0, c2.width, c2.height);
     ctx2.clearRect(0, 0, c2.width, c2.height);
+    save();
 }
