@@ -67,10 +67,11 @@ public class Conexion {
         String[] select = result.split(" rows ");
         return select;
     }
-    
-        public void insert(String sql, String[] columns, String msg, int n) {
+
+    public boolean insert(String sql, String[] columns, String msg, int n) {
         testMySQLDriver();
         getCrediantials(n);
+        boolean res;
         String passLocal = (conexion[4].equals("NONE")) ? "" : conexion[4];
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://"
@@ -86,11 +87,38 @@ public class Conexion {
             }
             ps.executeUpdate();
             if (!" ".equals(msg)) {
-               
+
+            }
+            res = true;
+
+        } catch (HeadlessException | SQLException e) {
+            res = false;
+        }
+
+        return res;
+    }
+    
+     public void delete(String sql, String msg, int n) {
+        testMySQLDriver();
+        getCrediantials(n);
+        String passLocal = (conexion[4].equals("NONE")) ? "" : conexion[4];
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://"
+                    + conexion[0] + ":"
+                    + conexion[1] + "/"
+                    + conexion[2],
+                    conexion[3],
+                    passLocal);
+            Statement st = conn.createStatement();
+            st.executeUpdate(sql);
+
+            if (!" ".equals(msg)) {
+                
             }
 
         } catch (HeadlessException | SQLException e) {
-            
+
+
         }
     }
 

@@ -12,27 +12,45 @@
 <%
     Conexion cx = new Conexion();
     String json = request.getParameter("code");
+    String color="";
+    boolean temp = false;
+    String res = "";
 
     //out.println(json);
-
     JSONArray array = new JSONArray(json);
-     
+    
+    String sql="DELETE FROM `parklots`";
+    
     //out.print(array.length());
-    
-    
-    
-           for (int i = 0; i < array.length(); i++) {
-            String sql = "INSERT INTO `parklots`(`id_parking`, `path_parking`, `id_parklot`, `data_url`) VALUES (?,?,?,?);";
-                        String[] c = {
-                           Integer.toString((Integer)array.getJSONObject(i).get("id_parking")),
-                           (String)array.getJSONObject(i).get("path"),
-                           Integer.toString((Integer)array.getJSONObject(i).get("id")),
-                           (String)array.getJSONObject(i).get("src")
-                        };
-                        String msg = " ";
-                        cx.insert(sql, c, msg, 2);
+        for (int i = 0; i < array.length(); i++) {
+            sql = "INSERT INTO `parklots`(`id_parking`, `path_parking`, `id_parklot`, `data_url`) VALUES (?,?,?,?);";
+            String[] c = {
+                Integer.toString((Integer) array.getJSONObject(i).get("id_parking")),
+                (String) array.getJSONObject(i).get("path"),
+                Integer.toString((Integer) array.getJSONObject(i).get("id")),
+                (String) array.getJSONObject(i).get("src")
+            };
+            String msg = " ";
+            temp = cx.insert(sql, c, msg, 2);
+
         }
 
+        if (temp) {
+            res = "Parqueos Convertidos, para Seleccionar el estado de cada parqueo dar 'clic' en 'Continuar'";
+            color="#265b91";
+        } else {
+            res = "Error ! No se ha logrado convertir los parqueos";
+            color="#dd4c55";
+        }
+%> 
+<div id="tittle" class="tittle" style="
+     text-align: center; 
+     font-family: 'Arial';
+     font-size: 22;
+     font-weight: bold;
+     padding: 15px;
+     color: <%= color%>;
+     "><%= res%></div>
 
-%>
+
 

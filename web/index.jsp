@@ -795,9 +795,6 @@
             </script>
         </div>
     </body>
-    <button onclick="upload('http://localhost:8080/Servidor/app/parklot/36');">Cargar</button>
-    <button onclick="next()">Cortar</button>
-    <button onclick="refresh()">Reiniciar</button>
     <div id="screen" style="
          display:none;">
         <canvas id="parking" style="
