@@ -1,6 +1,8 @@
 var num = 0;
+var i = "";
 var json = "";
 var img = "";
+var id_parking = "";
 var name = "";
 var path = "";
 var w = "";
@@ -9,11 +11,13 @@ var api = "";
 
 function save() {
 
-    jsonObj =[];
+    jsonObj = [];
     for (var i = 0; i < num; i++) {
         var h = document.getElementById(i);
         item = {}
-        item ["id"] = i;
+        item ["id_parking"] = id_parking;
+        item ["path"] = path;
+        item ["id"] = i+1;
         item ["src"] = h.toDataURL('image/jpeg', 1.0);
         jsonObj.push(item);
     }
@@ -24,15 +28,15 @@ function save() {
 
 function refresh() {
     for (var i = 0; i < num; i++) {
-        
+
         var h = document.getElementById("h" + i);
         h.remove();
-        var div = document.getElementById("div"+i);
+        var div = document.getElementById("div" + i);
         div.remove();
     }
     num = 0;
     upload(api);
-    
+
 }
 
 
@@ -59,16 +63,16 @@ function next() {
 }
 
 function upload(url) {
-    console.log(num);
-    
+//    console.log(num);
+
     api = url;
     for (var i = 0; i < num; i++) {
-         var h = document.getElementById("h" + i);
+        var h = document.getElementById("h" + i);
         h.remove();
-        var div = document.getElementById("div"+i);
+        var div = document.getElementById("div" + i);
         div.remove();
     }
-    
+
     var canvas = document.getElementById('screen');
     canvas.style.display = 'block';
     document.getElementById('postScreen').style.display = 'none';
@@ -77,12 +81,13 @@ function upload(url) {
         elems[i].style.display = 'none';
     }
     var parking = new fabric.Canvas('parking');
-    num=0;
+    num = 0;
     $.getJSON(url, function (data) {
         json = data;
         parking.loadFromJSON(data, parking.renderAll.bind(parking), function (o, object) {
             if (o.type === 'image') {
                 img = o.src;
+                id_parking = o.id_parking;
                 name = o.name;
                 path = o.path;
                 document.getElementById('tittle').innerHTML = name + " (" + path + ") ";
@@ -216,9 +221,11 @@ function copy(num, width, height) {
 }
 
 function savecanvas() {
+    console.log(num);
     //   var canvas = document.getElementById("b");   var link = document.createElement('a');   link.download = "test.png";   link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;   link.click();
     var c1 = document.getElementById("output");
     var c2 = document.getElementById(i);
+    if (c2!=null) {
     var ctx1 = c1.getContext("2d");
     var ctx2 = c2.getContext("2d");
     ctx2.clearRect(0, 0, c2.width, c2.height);
@@ -232,5 +239,6 @@ function savecanvas() {
     var ctx2 = c2.getContext("2d");
     ctx1.clearRect(0, 0, c2.width, c2.height);
     ctx2.clearRect(0, 0, c2.width, c2.height);
+    }
     save();
 }

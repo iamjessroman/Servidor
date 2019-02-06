@@ -44,7 +44,7 @@ public class ParklotResource {
     public String getParklot(@PathParam("id") int id) throws SQLException, IOException, JSONException {
         String dir = m.getDir(id);
         String name = m.getName(id);
-        return cj.create(dir, name);
+        return cj.create(dir, name, id);
     }
 
     /**

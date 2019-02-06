@@ -20,7 +20,7 @@ import sun.misc.BASE64Encoder;
  */
 public class CreateJson {
 
-    public JSONObject typeImage(String data, String path, String name) throws JSONException {
+    public JSONObject typeImage(String data, String path, String name, int id_parking) throws JSONException {
 
         JSONObject objectImage = new JSONObject();
 
@@ -51,6 +51,7 @@ public class CreateJson {
         objectImage.put("cropY", 0);
         objectImage.put("src", data);
         objectImage.put("path", path.substring(path.length() - 19));
+        objectImage.put("id_parking", id_parking);
         objectImage.put("name", name);
 
         return objectImage;
@@ -137,7 +138,7 @@ public class CreateJson {
         objectRect.put("height", height);
         objectRect.put("fill", "transparent");
         objectRect.put("stroke", "green");
-        objectRect.put("strokeWidth", 5);
+        objectRect.put("strokeWidth", 1);
         objectRect.put("strokeLineCap", "butt");
         objectRect.put("strokeLineJoin", "miter");
         objectRect.put("strokeMiterLimit", 10);
@@ -200,9 +201,10 @@ public class CreateJson {
         return objectText;
     }
 
-    public String create(String path, String name) throws IOException, JSONException {
+    public String create(String path, String name, int id_parking) throws IOException, JSONException {
+
         BufferedImage image = ImageIO.read(new File(path + ".jpg"));
-        JSONObject objectImage = typeImage(encodeToString(image, "jpeg"), path, name);
+        JSONObject objectImage = typeImage(encodeToString(image, "jpeg"), path, name, id_parking);
         JSONObject objectGroup = new JSONObject();
         JSONObject json = new JSONObject();
         JSONArray objects = new JSONArray();
