@@ -7,17 +7,33 @@ var w = "";
 var h = "";
 var api = "";
 
+function save() {
+
+    jsonObj =[];
+    for (var i = 0; i < num; i++) {
+        var h = document.getElementById(i);
+        item = {}
+        item ["id"] = i;
+        item ["src"] = h.toDataURL('image/jpeg', 1.0);
+        jsonObj.push(item);
+    }
+    
+    var json = document.getElementById('code');
+    json.value = JSON.stringify(jsonObj);
+}
+
+
 function refresh() {
     for (var i = 0; i < num; i++) {
-        
+
         var h = document.getElementById("h" + i);
         h.remove();
-        var div = document.getElementById("div"+i);
+        var div = document.getElementById("div" + i);
         div.remove();
     }
     num = 0;
     upload(api);
-    
+
 }
 
 
@@ -45,15 +61,15 @@ function next() {
 
 function upload(url) {
     console.log(num);
-    
+
     api = url;
     for (var i = 0; i < num; i++) {
-         var h = document.getElementById("h" + i);
+        var h = document.getElementById("h" + i);
         h.remove();
-        var div = document.getElementById("div"+i);
+        var div = document.getElementById("div" + i);
         div.remove();
     }
-    
+
     var canvas = document.getElementById('screen');
     canvas.style.display = 'block';
     document.getElementById('postScreen').style.display = 'none';
@@ -62,7 +78,7 @@ function upload(url) {
         elems[i].style.display = 'none';
     }
     var parking = new fabric.Canvas('parking');
-    num=0;
+    num = 0;
     $.getJSON(url, function (data) {
         json = data;
         parking.loadFromJSON(data, parking.renderAll.bind(parking), function (o, object) {
@@ -124,6 +140,8 @@ function draw() {
     for (var i = 0; i < elems.length; i += 1) {
         elems[i].style.display = 'block';
     }
+    save();
+
 }
 
 function cut(X, Y, Width, Height, Angle, num, src) {
@@ -217,6 +235,8 @@ function savecanvas() {
     var ctx2 = c2.getContext("2d");
     ctx1.clearRect(0, 0, c2.width, c2.height);
     ctx2.clearRect(0, 0, c2.width, c2.height);
+    
+    save();
 }
 
 
