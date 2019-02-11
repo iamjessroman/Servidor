@@ -20,12 +20,14 @@
     JSONArray array = new JSONArray(json);
     
     String sql="DELETE FROM `parklots`";
+    cx.delete(sql, "", 2);
     
     //out.print(array.length());
         for (int i = 0; i < array.length(); i++) {
-            sql = "INSERT INTO `parklots`(`id_parking`, `path_parking`, `id_parklot`, `data_url`) VALUES (?,?,?,?);";
+            sql = "INSERT INTO `parklots`(`id_parking`, `name_parking`,`path_parking`, `id_parklot`, `data_url`) VALUES (?,?,?,?,?);";
             String[] c = {
                 Integer.toString((Integer) array.getJSONObject(i).get("id_parking")),
+                (String) array.getJSONObject(i).get("name_parking"),
                 (String) array.getJSONObject(i).get("path"),
                 Integer.toString((Integer) array.getJSONObject(i).get("id")),
                 (String) array.getJSONObject(i).get("src")

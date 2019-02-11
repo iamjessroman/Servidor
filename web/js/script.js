@@ -16,6 +16,7 @@ function save() {
         var h = document.getElementById(i);
         item = {}
         item ["id_parking"] = id_parking;
+        item ["name_parking"] = name;
         item ["path"] = path;
         item ["id"] = i+1;
         item ["src"] = h.toDataURL('image/jpeg', 1.0);
