@@ -144,7 +144,7 @@ public class CreateJson {
         objectRect.put("strokeMiterLimit", 10);
         objectRect.put("scaleX", 1);
         objectRect.put("scaleY", 1);
-        objectRect.put("angle", angle);
+        objectRect.put("angle", 0);
         objectRect.put("flipX", false);
         objectRect.put("flipY", false);
         objectRect.put("opacity", 1);
@@ -186,7 +186,7 @@ public class CreateJson {
         objectText.put("strokeMiterLimit", 10);
         objectText.put("scaleX", 0.5);
         objectText.put("scaleY", 0.5);
-        objectText.put("angle", angle);
+        objectText.put("angle", 0);
         objectText.put("flipX", false);
         objectText.put("flipY", false);
         objectText.put("opacity", 1);
