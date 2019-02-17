@@ -18,7 +18,7 @@ import sun.misc.BASE64Encoder;
  *
  * @author Jessica Roman
  */
-public class CreateJson {
+public class JsonFile {
 
     public JSONObject typeImage(String data, String path, String name, int id_parking) throws JSONException {
 

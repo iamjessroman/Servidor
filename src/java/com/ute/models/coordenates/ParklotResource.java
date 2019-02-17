@@ -31,7 +31,7 @@ public class ParklotResource {
      * Creates a new instance of ParklotResource
      */
     Main m = new Main();
-    CreateJson cj = new CreateJson();
+    JsonFile cj = new JsonFile();
 
     public ParklotResource() {
     }

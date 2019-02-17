@@ -1,4 +1,4 @@
-var num = 0;
+var num = [];
 var i = "";
 var json = "";
 var img = "";
@@ -18,7 +18,7 @@ function save() {
         item ["id_parking"] = id_parking;
         item ["name_parking"] = name;
         item ["path"] = path;
-        item ["id"] = i+1;
+        item ["id"] = i + 1;
         item ["src"] = h.toDataURL('image/jpeg', 1.0);
         jsonObj.push(item);
     }
@@ -103,29 +103,27 @@ function upload(url) {
             }
 
             if (o.type === 'group') {
-                 console.log(object._objects)
-//                var nDiv = document.createElement('div');
-//                nDiv.id = 'div' + num;
-//                nDiv.style.display = 'none';
-//                nDiv.className = 'divcanvas';
-//                nDiv.onclick = '';
-//                document.getElementById('Layer').appendChild(nDiv);
-//
-//                var h = document.createElement("h3");
-//                h.setAttribute('id', "h" + num);
-//                h.style.fontFamily = 'Arial';
-//                h.style.color = '#265b91';
-//                nDiv.appendChild(h);
-//
-//                document.getElementById("h" + num).innerHTML = "Parqueo '" + (num + 1) + "'";
-//
-//                var canv = document.createElement("canvas");
-//                canv.setAttribute('width', 500);
-//                canv.setAttribute('height', 500);
-//                canv.setAttribute('id', num);
-//                canv.style.border = "thick solid #0000FF";
-//                nDiv.appendChild(canv);
-//                num += 1;
+                var nDiv = document.createElement('div');
+                nDiv.id = 'div' + (num);
+                nDiv.style.display = 'none';
+                nDiv.className = 'divcanvas';
+                nDiv.onclick = '';
+                document.getElementById('Layer').appendChild(nDiv);
+
+                var h = document.createElement("h3");
+                h.setAttribute('id', "h" + (num));
+                h.style.fontFamily = 'Arial';
+                h.style.color = '#265b91';
+                nDiv.appendChild(h);
+
+                document.getElementById("h" + (num)).innerHTML = "Parqueo '" + (object._objects[1].text) + "'";
+                var canv = document.createElement("canvas");
+                canv.setAttribute('width', 300);
+                canv.setAttribute('height', 300);
+                canv.setAttribute('id', num);
+                canv.style.border = "thick solid #0000FF";
+                nDiv.appendChild(canv);
+                num += 1;
             }
         });
     });
@@ -137,10 +135,37 @@ function draw() {
     a.loadFromJSON(json, a.renderAll.bind(a), function (o, object) {
 //        fabric.log(o);
         if (o.type == 'group') {
-//            alert(o.left, o.top, (o.width*o.scaleX), (o.height*o.scaleY), o.angle)
-            cut(o.left, o.top, (o.width * o.scaleX), (o.height * o.scaleY), o.angle, num, img);
-            $("#" + num).attr("onclick", "copy(" + num + "," + (o.width * o.scaleX) + "," + (o.height * o.scaleY) + ")");
-            num += 1;
+            var angle = o.angle;
+
+            if (angle > 40 && angle < 140) {
+                console.log("1");
+                cut(o.left, o.top, (o.height * o.scaleY), (o.width * o.scaleX), 0, (num), img);
+                rotate(true, num, 90, (o.height * o.scaleY), (o.width * o.scaleX));
+                $("#" + (num)).attr("onclick", "copy(" + (num) + "," + (o.width * o.scaleX) + "," + (o.height * o.scaleY) + ")");
+                num += 1;
+            } else if (angle > -140 && angle < -40) {
+                console.log("2");
+                cut(o.top, o.left, (o.height * o.scaleY), (o.width * o.scaleX), 0, (num), img);
+                rotate(true, num, 90, (o.height * o.scaleY), (o.width * o.scaleX));
+                $("#" + (num)).attr("onclick", "copy(" + (num) + "," + (o.width * o.scaleX) + "," + (o.height * o.scaleY) + ")");
+                num += 1;
+            } else if (angle > 260 && angle < 320) {
+                 console.log("2");
+                cut(o.top, o.left, (o.height * o.scaleY), (o.width * o.scaleX), 0, (num), img);
+                rotate(true, num, 90, (o.height * o.scaleY), (o.width * o.scaleX));
+                $("#" + (num)).attr("onclick", "copy(" + (num) + "," + (o.width * o.scaleX) + "," + (o.height * o.scaleY) + ")");
+                num += 1;
+            } else if (angle >= 0 && angle <= 40) {
+                console.log("3");
+                cut(o.left, o.top, (o.width * o.scaleX), (o.height * o.scaleY), 0, (num), img);
+                $("#" + (num)).attr("onclick", "copy(" + (num) + "," + (o.width * o.scaleX) + "," + (o.height * o.scaleY) + ")");
+                num += 1;
+            } else if (angle >= 140 && angle <= 260) {
+                console.log("4");
+                cut(o.left - 71.3, o.top - 153, (o.width * o.scaleX), (o.height * o.scaleY), 0, (num), img);
+                $("#" + (num)).attr("onclick", "copy(" + (num) + "," + (o.width * o.scaleX) + "," + (o.height * o.scaleY) + ")");
+                num += 1;
+            }
         }
     });
     var elems = document.getElementsByClassName('divcanvas');
@@ -201,6 +226,16 @@ function cut(X, Y, Width, Height, Angle, num, src) {
     }
 }
 
+function rotate(rotating, num, deg, width, height) {
+    var canvas = document.getElementById(num);
+    var ctx = canvas.getContext("2d");
+    if (rotating) {
+        ctx.translate((width-5) / 2,(height-99) / 2);
+        ctx.rotate(deg * Math.PI / 180);
+    }
+    console.log("g");
+}
+
 function copy(num, width, height) {
     h = height;
     w = width;
@@ -228,20 +263,20 @@ function savecanvas() {
     //   var canvas = document.getElementById("b");   var link = document.createElement('a');   link.download = "test.png";   link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");;   link.click();
     var c1 = document.getElementById("output");
     var c2 = document.getElementById(i);
-    if (c2!=null) {
-    var ctx1 = c1.getContext("2d");
-    var ctx2 = c2.getContext("2d");
-    ctx2.clearRect(0, 0, c2.width, c2.height);
-    var imgData = ctx1.getImageData(0, 0, w, h);
-    ctx2.putImageData(imgData, 0, 0);
-    i = num;
+    if (c2 != null) {
+        var ctx1 = c1.getContext("2d");
+        var ctx2 = c2.getContext("2d");
+        ctx2.clearRect(0, 0, c2.width, c2.height);
+        var imgData = ctx1.getImageData(0, 0, w, h);
+        ctx2.putImageData(imgData, 0, 0);
+        i = num;
 
-    var c1 = document.getElementById("output");
-    var c2 = document.getElementById("b");
-    var ctx1 = c1.getContext("2d");
-    var ctx2 = c2.getContext("2d");
-    ctx1.clearRect(0, 0, c2.width, c2.height);
-    ctx2.clearRect(0, 0, c2.width, c2.height);
+        var c1 = document.getElementById("output");
+        var c2 = document.getElementById("b");
+        var ctx1 = c1.getContext("2d");
+        var ctx2 = c2.getContext("2d");
+        ctx1.clearRect(0, 0, c2.width, c2.height);
+        ctx2.clearRect(0, 0, c2.width, c2.height);
     }
     save();
 }
