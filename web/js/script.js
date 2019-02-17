@@ -103,27 +103,29 @@ function upload(url) {
             }
 
             if (o.type === 'group') {
-                var nDiv = document.createElement('div');
-                nDiv.id = 'div' + num;
-                nDiv.style.display = 'none';
-                nDiv.className = 'divcanvas';
-                nDiv.onclick = '';
-                document.getElementById('Layer').appendChild(nDiv);
-
-                var h = document.createElement("h3");
-                h.setAttribute('id', "h" + num);
-                h.style.fontFamily = 'Arial';
-                h.style.color = '#265b91';
-                nDiv.appendChild(h);
-
-                document.getElementById("h" + num).innerHTML = "Parqueo '" + (num + 1) + "'";
-
-                var canv = document.createElement("canvas");
-                canv.setAttribute('width', (o.width * o.scaleX));
-                canv.setAttribute('height', (o.height * o.scaleY));
-                canv.setAttribute('id', num);
-                nDiv.appendChild(canv);
-                num += 1;
+                 console.log(object._objects)
+//                var nDiv = document.createElement('div');
+//                nDiv.id = 'div' + num;
+//                nDiv.style.display = 'none';
+//                nDiv.className = 'divcanvas';
+//                nDiv.onclick = '';
+//                document.getElementById('Layer').appendChild(nDiv);
+//
+//                var h = document.createElement("h3");
+//                h.setAttribute('id', "h" + num);
+//                h.style.fontFamily = 'Arial';
+//                h.style.color = '#265b91';
+//                nDiv.appendChild(h);
+//
+//                document.getElementById("h" + num).innerHTML = "Parqueo '" + (num + 1) + "'";
+//
+//                var canv = document.createElement("canvas");
+//                canv.setAttribute('width', 500);
+//                canv.setAttribute('height', 500);
+//                canv.setAttribute('id', num);
+//                canv.style.border = "thick solid #0000FF";
+//                nDiv.appendChild(canv);
+//                num += 1;
             }
         });
     });

@@ -800,4 +800,8 @@
         <canvas id="parking" style="
                 border:3px solid #4aad52;"></canvas>
     </div>
+
+    <button onclick="upload('http://localhost:8080/Servidor/app/parklot/37');">Cargar</button>
+    <button onclick="next()">Cortar</button>
+    <button onclick="refresh()">Reiniciar</button>
 </html>
