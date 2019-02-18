@@ -1,0 +1,64 @@
+var text = new fabric.IText(i.idSpaceParking, {
+                fontSize: 100,
+                left: i.coordText.left,
+                top: i.coordText.top,
+                fontFamily: 'helvetica',
+                fill: 'yellow',
+                scaleX: i.coordText.scaleX,
+                scaleY: i.coordText.scaleY,
+                fontWeight: '',
+                hasRotatingPoint: true
+            });
+            var rect = new fabric.Rect({
+                left: i.coordRect.left,
+                top: i.coordRect.top,
+                fill: 'transparent',
+                stroke: color,
+                strokeWidth: 5,
+                width: i.coordRect.width,
+                height: i.coordRect.height,
+            });
+            var group = new fabric.Group([rect, text], {
+                left: i.coordGroup.left,
+                top: i.coordGroup.top,
+                angle: i.coordGroup.angle,
+                scaleX: i.coordGroup.scaleX,
+                scaleY: i.coordGroup.scaleY,
+                width: i.coordGroup.width,
+                height: i.coordGroup.height
+            });
+            canvas.add(group);
+
+            var text = new fabric.Text('1', {
+              fontSize: 100,
+              left: -14.1536455,
+              top: -28.5,
+              fontFamily: 'helvetica',
+              fill: 'yellow',
+              scaleX: 0.5,
+              scaleY: 0.5,
+              fontWeight: '',
+              hasRotatingPoint: true
+            });
+
+            var rect = new fabric.Rect({
+              left: -14.1536455,
+              top: -28.5,
+              fill: 'transparent',
+              stroke: 'green',
+              strokeWidth: 5,
+              width:  28.307291,
+              height: 57.0
+            });
+
+            var group = new fabric.Group([rect, text], {
+              left: 32.0,
+              top: 54.0,
+              angle: 0,
+              scaleX: 2.6762073,
+              scaleY: 2.6762073,
+              width: 28.307291,
+              height: 57
+            });
+
+            canvas.add(group);

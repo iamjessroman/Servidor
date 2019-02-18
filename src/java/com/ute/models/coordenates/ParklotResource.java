@@ -5,6 +5,7 @@
  */
 package com.ute.models.coordenates;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.ws.rs.core.Context;
@@ -14,6 +15,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 
 /**
@@ -41,6 +43,16 @@ public class ParklotResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getParklot(@PathParam("id") int id) throws SQLException, IOException, JSONException {
         String dir = m.getDir(id);
+        String name = m.getName(id);
+        return cj.create(dir, name, id);
+    }
+
+    @GET
+    @Path("/{id}/{path}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getParkings(@PathParam("id") int id, @PathParam("path") String path) throws SQLException, IOException, JSONException {
+        String d = m.getPath(id);
+        String dir = d + path;
         String name = m.getName(id);
         return cj.create(dir, name, id);
     }
